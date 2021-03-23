@@ -66,7 +66,7 @@ input.addEventListener('input', dbouncer(() => {
 // usual function.
 input.addEventListener('input', dbouncer(e => {
     console.log(e.target.value);
-    // using e object that was passed to dbouncer()
+    // using "e" object that was passed to dbouncer()
 }, 500));
 ```
 
