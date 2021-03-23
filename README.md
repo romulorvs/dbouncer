@@ -63,9 +63,10 @@ input.addEventListener('input', dbouncer(() => {
 
 // PLUS: dbouncer() inner function will receive the parameters that would
 // be originaly passed to dbouncer(), so you can use it just as the
-// usual function. Ex.:
+// usual function.
 input.addEventListener('input', dbouncer(e => {
     console.log(e.target.value);
+    // using e object that was passed to dbouncer()
 }, 500));
 ```
 
