@@ -1,6 +1,6 @@
-# DBouncer
+# dbouncer
 
-*Generate mutable debounce functions.*
+*Generate debounce functions.*
 
 ![npm](https://img.shields.io/npm/dm/dbouncer)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/dbouncer)
@@ -24,7 +24,7 @@ input.addEventListener('input', (e) => {
 
 **Clearing debounce function:**
 
-The debounce function has a **clear()** method attached to be called in this situation.
+The generated debounce function has a **clear()** method attached to be called in this situation.
 
 ```js
 import dbouncer from 'dbouncer';
