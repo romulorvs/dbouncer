@@ -1,0 +1,27 @@
+{
+  "name": "dbouncer",
+  "version": "0.1.0",
+  "description": "Generate debounce functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romulorvs/dbouncer.git"
+  },
+  "keywords": [
+    "debounce",
+    "functions",
+    "generate"
+  ],
+  "author": "RomuloVS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romulorvs/dbouncer"
+  },
+  "homepage": "https://github.com/romulorvs/dbouncer",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
