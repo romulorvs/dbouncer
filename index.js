@@ -1,17 +1,26 @@
-function dbouncer(extFunc, extTime = 0) {
+function dbouncer(extResource, extTime = 0) {
     var timeoutObj = null;
   
     function debounce(...funcArgs) {
         debounce.clear();
         
-        if (typeof extFunc === 'function' && typeof extTime === 'number'){
-            timeoutObj = setTimeout(() => extFunc(...funcArgs), extTime);
+        if (typeof extResource === 'function' && typeof extTime === 'number') {
+            timeoutObj = setTimeout(() => extResource(...funcArgs), extTime);
             return;
         }
 
         var func = funcArgs[0];
-        var time = funcArgs[1] || 0;
-        if (typeof func === 'function' && typeof time === 'number'){
+        var time = funcArgs[1];
+        if(typeof extResource === 'number'){
+
+            if(typeof func === 'function' && typeof time !== 'number'){
+                timeoutObj = setTimeout(func, extResource);
+                return;
+            }
+        }
+        
+        time = time || 0;
+        if (typeof func === 'function' && typeof time === 'number') {
             timeoutObj = setTimeout(func, time);
             return;
         }

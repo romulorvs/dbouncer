@@ -1,1 +1,1 @@
-export default function dbouncer(func?: function, time?: number): Function;
+export default function dbouncer(resource?: Function | number, time?: number): (func?: Function, time?: number) => void;

@@ -1,70 +1,98 @@
 # dbouncer
 
-*Generate debounce functions.*
+*Generate mutable debounce functions.*
 
 ![npm](https://img.shields.io/npm/dm/dbouncer)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/dbouncer)
 
 ## Usage
 
+In a typical debounce, you set the function to be called when you are declaring it, so it will always be calling the same function.<br />
+**Dbouncer** let's you **change the function to be called whenever you like**.
+
 ```js
 import dbouncer from 'dbouncer';
 
-const inputDebounce = dbouncer();
+const inputDebounce = dbouncer(); // generating a mutable debounce function
 
-input.addEventListener('input', (e) => {
+inputElement.addEventListener('input', (e) => {
 
-    inputDebounce(() => console.log(e.target.value), 700);
-    // after 700 ms with no new input, console.log() will
-    // be called with the last inserted value
+    if(e.target.value.length > 10)
+        inputDebounce(() => console.log('more than 10 chars'), 700);
+    else
+        inputDebounce(() => console.log('up to 10 chars'), 700);
+    // Every time input event fires, you can set a different function
+    // to inputDebounce. After 700 ms with no new input,
+    // inputDebounce will run the last setted function.
 })
+```
+
+------------
+
+**Presetting the wait time:**
+
+You can also preset the wait time right in the dbouncer() function
+
+```js
+const inputDebounce = dbouncer(700); // presetting fire wait to 700 ms
+
+inputElement.addEventListener('input', (e) => {
+
+    if(e.target.value.length > 10)
+        inputDebounce(() => console.log('more than 10 chars'));
+    else
+        inputDebounce(() => console.log('up to 10 chars'));
+    // After 700 ms with no new input, inputDebounce will run the
+    // last setted function.
+})
+
 ```
 
 ------------
 
 **Clearing debounce function:**
 
-The generated debounce function has a **clear()** method attached to be called in this situation.
+The generated debounce function has a **clear()** method attached to it.
 
 ```js
 import dbouncer from 'dbouncer';
 
 const inputDebounce = dbouncer();
 
-input.addEventListener('input', (e) => {
+inputElement.addEventListener('input', (e) => {
 
     inputDebounce(() => console.log(e.target.value), 700);
     
     if(!e.target.value){
         inputDebounce.clear();
-        // clearing debounce function if e.target.value is falsy,
-        // so console.log() will not be called.
+        // clearing inputDebounce function if "e.target.value"
+        // is falsy, so console.log() will not be called.
     }
 })
 ```
 
 ------------
 
-**Typical debounce function:**
+**Using dbouncer as a typical debounce function:**
 
-You can use **dbouncer()** as a any typical debounce function.
+You can also use **dbouncer()** as a any typical debounce function.
 
 ```js
 import dbouncer from 'dbouncer';
 
 var counter = 0;
 
-input.addEventListener('input', dbouncer(() => {
+inputElement.addEventListener('input', dbouncer(() => {
     console.log(++counter);
 }, 500));
-// after 500 ms with no new input, dbouncer parameter function will
-// be called, therefore console.log() will also be called
+// after 500 ms with no new input, dbouncer function will be called
 
 
-// PLUS: dbouncer() inner function will receive the parameters that would
-// be originaly passed to dbouncer(), so you can use it just as the
-// usual function.
-input.addEventListener('input', dbouncer(e => {
+/**
+ * PLUS: the function you set in dbouncer will receive the same
+ * parameters that would be originaly passed to dbouncer().
+ */
+inputElement.addEventListener('input', dbouncer(e => {
     console.log(e.target.value);
     // using "e" object that was passed to dbouncer()
 }, 500));
