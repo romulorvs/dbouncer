@@ -2,7 +2,7 @@
 
 *Generate mutable debounce functions.*
 
-![npm](https://img.shields.io/github/downloads/romulorvs/dbouncer/total)
+![npm](https://img.shields.io/npm/dt/dbouncer.svg)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/dbouncer)
 
 ## Usage
